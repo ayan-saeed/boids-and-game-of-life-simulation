@@ -1,4 +1,5 @@
 const wrapper = document.querySelector(".wrapper");
+const randomButton = document.querySelector(".random");
 
 function make2Darray(cols, rows){
     let arr = new Array(cols);
@@ -12,7 +13,7 @@ let canvas;
 let grid; 
 let cols;
 let rows;
-let resolution = 15;
+let resolution = 12;
 
 function setup(){
     let container = createDiv();
@@ -80,3 +81,7 @@ function resetGrid(){
         }
     }
 }
+
+randomButton.addEventListener("click", () =>{
+    resetGrid();
+});
