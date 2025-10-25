@@ -1,0 +1,9 @@
+*{
+    margin: 10;
+    padding: 10;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #141414;
+}
