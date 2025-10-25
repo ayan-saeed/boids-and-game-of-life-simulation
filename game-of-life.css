@@ -1,9 +1,54 @@
 *{
-    margin: 10;
-    padding: 10;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+}
+
+/* Import font style */
+@font-face {
+    font-family: 'customFont';
+    src: url('fonts/star-shield-2-font/StarShieldV2-9M52K.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
 }
 
 body{
     background-color: #141414;
+}
+
+.header{
+    background-color: #202020;
+}
+.heading{
+    color: #E4B400 ;
+    font-family: 'customFont', sans-serif;
+    letter-spacing: 2px;
+    font-size: 50px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px 40px; 
 }

@@ -1,3 +1,5 @@
+const wrapper = document.querySelector(".wrapper");
+
 function make2Darray(cols, rows){
     let arr = new Array(cols);
     for(let i = 0; i < arr.length; i++){
@@ -6,21 +8,22 @@ function make2Darray(cols, rows){
     return arr;
 }
 
+let canvas;
 let grid; 
 let cols;
 let rows;
-let resolution = 20;
+let resolution = 15;
 
 function setup(){
-    createCanvas(600,400);
-    cols = width/resolution;
-    rows = height/resolution;
-    grid = make2Darray(cols,rows);
-    for(let i = 0; i < cols; i++){
-        for(let j = 0; j < rows; j++){
-            grid[i][j] = floor(random(2));
-        }
-    }
+    let container = createDiv();
+    container.addClass("game-container");
+    container.parent(wrapper);
+    const canvasWidth = windowWidth - 60;
+    const headerHeight = document.querySelector(".header").offsetHeight;
+    const canvasHeight = windowHeight - headerHeight - 60;
+    canvas = createCanvas(canvasWidth, canvasHeight);
+    canvas.parent(container);
+    resetGrid();
 }
 
 function draw(){
@@ -67,3 +70,13 @@ function countNeighbours(grid, x, y){
     return sum;
 }
 
+function resetGrid(){
+    cols = floor(width / resolution);
+    rows = floor(height / resolution);
+    grid = make2Darray(cols,rows);
+    for(let i = 0; i < cols; i++){
+        for(let j = 0; j < rows; j++){
+            grid[i][j] = floor(random(2))
+        }
+    }
+}
