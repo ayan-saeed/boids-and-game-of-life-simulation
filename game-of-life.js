@@ -66,3 +66,4 @@ function countNeighbours(grid, x, y){
     sum -= grid[x][y];
     return sum;
 }
+
