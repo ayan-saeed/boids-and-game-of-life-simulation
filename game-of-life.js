@@ -1,5 +1,10 @@
 const wrapper = document.querySelector(".wrapper");
 const randomButton = document.querySelector(".random");
+const play = document.querySelector(".play");
+const pause = document.querySelector(".pause");
+const drawbutton = document.querySelector(".draw");
+let paused = false;
+let isDrawing = false;
 
 function make2Darray(cols, rows){
     let arr = new Array(cols);
@@ -13,7 +18,7 @@ let canvas;
 let grid; 
 let cols;
 let rows;
-let resolution = 12;
+let resolution = 10;
 
 function setup(){
     let container = createDiv();
@@ -40,22 +45,24 @@ function draw(){
             }
         }
     }
-    let next = make2Darray(cols,rows);
-    for(let i = 0; i < cols; i++){
-        for(let j = 0; j < rows; j++){
-            let state = grid[i][j];
-            let sum = 0;
-            let neighbours = countNeighbours(grid, i, j);
-            if (state == 0 && neighbours == 3){
-                next[i][j] = 1;
-            } else if (state == 1 && (neighbours < 2 || neighbours > 3)){
-                next[i][j] = 0;
-            } else {
-                next[i][j] = state;
+    if(!paused && !isDrawing){
+        let next = make2Darray(cols,rows);
+        for(let i = 0; i < cols; i++){
+            for(let j = 0; j < rows; j++){
+                let state = grid[i][j];
+                let sum = 0;
+                let neighbours = countNeighbours(grid, i, j);
+                if (state == 0 && neighbours == 3){
+                    next[i][j] = 1;
+                } else if (state == 1 && (neighbours < 2 || neighbours > 3)){
+                    next[i][j] = 0;
+                } else {
+                    next[i][j] = state;
+                }
             }
         }
+        grid = next;
     }
-    grid = next;
 }
 
 function countNeighbours(grid, x, y){
@@ -83,5 +90,31 @@ function resetGrid(){
 }
 
 randomButton.addEventListener("click", () =>{
+    isDrawing = false;
+    paused = false;
     resetGrid();
 });
+
+pause.addEventListener("click", () =>{
+    paused = true;
+});
+
+play.addEventListener("click", () =>{
+    if(paused){
+        paused = !paused;
+    }
+    isDrawing = false;
+})
+
+drawbutton.addEventListener("click", () => {
+    isDrawing = true;
+    paused = true;
+    cols = floor(width / resolution);
+    rows = floor(height / resolution);
+    grid = make2Darray(cols,rows);
+    for(let i = 0; i < cols; i++){
+        for(let j = 0; j < rows; j++){
+            grid[i][j] = 0;
+        }
+    }
+})
