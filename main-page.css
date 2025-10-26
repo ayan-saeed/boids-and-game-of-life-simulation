@@ -53,8 +53,8 @@ body{
     font-size: 3rem;
     font-family: 'customFont', sans-serif;
     color: black;
-    transition: flex 0.5s ease;
     border-radius: 20px;
+    transition: flex 1s ease, font-size 0.5s ease;
 }
 
 .boids {
@@ -70,4 +70,5 @@ body{
 /* Hover effect */
 .options a:hover {
     flex: 3.5;
+    font-size: 6rem;
 }
