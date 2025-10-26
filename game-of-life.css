@@ -1,3 +1,4 @@
+/* Reset page margin and padding */
 *{
     margin: 0;
     padding: 0;
@@ -21,6 +22,7 @@ body{
     background-color: #141414;
 }
 
+/* UI consistent across all nav buttons */
 .heading, .play, .pause, .random, .draw{
     text-decoration: none;
     color: white ;
@@ -28,11 +30,6 @@ body{
     letter-spacing: 2px;
     flex-wrap: wrap;
 }
-
-.heading{
-    padding: 15px;
-}
-
 .play, .pause, .random, .draw{
     font-size: 30px;
 }
@@ -70,12 +67,14 @@ body{
 .heading {
     font-size: 42px;
     color: #E4B400;
+    padding: 15px;
 }
 
 .nav-buttons {
     display: flex;
     gap: 15px;
 }
+
 
 .nav-buttons a {
     text-decoration: none;
