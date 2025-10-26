@@ -50,7 +50,6 @@ function draw(){
         for(let i = 0; i < cols; i++){
             for(let j = 0; j < rows; j++){
                 let state = grid[i][j];
-                let sum = 0;
                 let neighbours = countNeighbours(grid, i, j);
                 if (state == 0 && neighbours == 3){
                     next[i][j] = 1;
@@ -62,6 +61,15 @@ function draw(){
             }
         }
         grid = next;
+    }
+    if(isDrawing){
+        if(mouseIsPressed){
+            let cellX = floor(mouseX / resolution);
+            let cellY = floor(mouseY / resolution);
+            if (cellX >= 0 && cellX < cols && cellY >= 0 && cellY < rows) {
+                grid[cellX][cellY] = 1;
+            }
+        }
     }
 }
 
@@ -104,7 +112,7 @@ play.addEventListener("click", () =>{
         paused = !paused;
     }
     isDrawing = false;
-})
+});
 
 drawbutton.addEventListener("click", () => {
     isDrawing = true;
@@ -117,4 +125,4 @@ drawbutton.addEventListener("click", () => {
             grid[i][j] = 0;
         }
     }
-})
+});
