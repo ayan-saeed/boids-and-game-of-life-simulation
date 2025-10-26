@@ -35,6 +35,7 @@ function setup(){
     // Create canvas and insert it to the page
     canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.parent(container);
+    frameRate(20);
     // Initialise the grid
     resetGrid();
 }
