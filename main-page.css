@@ -1,0 +1,73 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body{
+    background-color: #141414;
+}
+
+/* Import font style */
+@font-face {
+    font-family: 'customFont';
+    src: url('fonts/star-shield-2-font/StarShieldV2-9M52K.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #111;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.heading{
+    font-family: 'customFont', sans-serif;
+    letter-spacing: 1.8px;
+    font-size: 42px;
+    margin: 40px;
+    color: white;
+}
+
+/* Make options container full screen */
+.options {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 70px); 
+    margin: 0;
+    padding: 10px;
+    gap: 10px;
+}
+
+/* Style the options */
+.options a {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 3rem;
+    font-family: 'customFont', sans-serif;
+    color: black;
+    transition: flex 0.5s ease;
+    border-radius: 20px;
+}
+
+.boids {
+    background-color: #e63933;
+    color: black;
+}
+
+.game-of-life {
+    background-color: #d9b233;
+    color: black;
+}
+
+/* Hover effect */
+.options a:hover {
+    flex: 3.5;
+}
