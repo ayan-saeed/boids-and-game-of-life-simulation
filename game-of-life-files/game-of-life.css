@@ -8,7 +8,7 @@
 /* Import font style */
 @font-face {
     font-family: 'customFont';
-    src: url('fonts/star-shield-2-font/StarShieldV2-9M52K.ttf');
+    src: url('../fonts/star-shield-2-font/StarShieldV2-9M52K.ttf');
     font-weight: normal;
     font-style: normal;
 }
