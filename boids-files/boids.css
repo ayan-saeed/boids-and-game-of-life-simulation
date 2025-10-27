@@ -1,0 +1,19 @@
+/* Reset page margin and padding */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Import font style */
+@font-face {
+    font-family: 'customFont';
+    src: url('../fonts/star-shield-2-font/StarShieldV2-9M52K.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
