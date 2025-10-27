@@ -7,23 +7,31 @@
 }
 
 html, body {
+    /* Allow full screen layout */
     height: 100%;
+    /* Prevent scrolling */
     overflow: hidden;
+    /* Remove default browser margin and padding */
     margin: 0;
     padding: 0;
 }
 
+/* Wrapper around the whole content */
 .wrapper {
+    /* Full width and height*/
     width: 100%;
     height: 100%;
 }
-
+/* Container for canvas */
 .boids-container {
+    /* Small space between header and canvas */
     margin-top: 10px;
 }
-
+/* Style canvas element */
 canvas {
+    /* Removes inline-block spacing issue */
     display: block;
+    /* Prevent p5.js from forcing absolute positioning */
     position: relative !important;
     margin: 10px auto;
     border: 2px solid #e63933;
@@ -33,6 +41,7 @@ canvas {
 .header {
     background-color: #1b1b1b;
     display: flex;
+    /* Fixed header height */
     height: 80px;
     align-items: center;
     justify-content: space-between;
@@ -54,9 +63,12 @@ body{
 }
 
 .controls {
+    /* Row layout */
     display: flex;
     justify-content: center;
+    /* Spacing between each control */
     gap: 15px;
+    /* Space above controls from canvas*/
     margin-top: 10px;
 }
 
@@ -76,7 +88,7 @@ body{
     background-color: #e63933;
     color: black;
 }
-
+/* Style dropdown menu */
 select {
     background-color: rgba(228, 0, 0, 0.1);
     color: white;
@@ -92,7 +104,7 @@ select:hover {
     border-color: #ff4040;
     box-shadow: 0 0 8px rgba(230, 57, 51, 0.6);
 }
-
+/* Dropdown option styling */
 option {
     background-color: #1b1b1b;
     color: white;
