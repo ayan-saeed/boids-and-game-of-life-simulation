@@ -58,7 +58,7 @@ class Boid{
     // Alignment — fly in the same direction as nearby boids
     align(boids){
         return this.calculateForce(boids, 60, (other) =>
-            // follow velocity direction
+            // follow neighbor movement direction
             other.velocity.copy());
     }
     // Separation — avoid crowding other boids
