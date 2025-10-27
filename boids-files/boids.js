@@ -1,11 +1,13 @@
+p5.disableFriendlyErrors = true;
+
 class Boid{
     constructor(){
         this.position = createVector(random(width), random(height));
         this.velocity = p5.Vector.random2D();
         this.velocity.setMag(random(2, 4));
         this.acceleration = createVector();
-        this.maxForce = 0.2;
-        this.maxSpeed = 4;
+        this.maxForce = 0.05;
+        this.maxSpeed = 3;
     }
 
     edges(){
@@ -84,14 +86,14 @@ class Boid{
         let alignment = this.align(boids);
         let cohesion = this.cohesion(boids);
         let seperation = this.seperation(boids);
-
+        let wind = p5.Vector.random2D().mult(0.05);
         seperation.mult(seperationSlider.value());
         cohesion.mult(cohesionSlider.value());
         alignment.mult(alignSlider.value());
-
         this.acceleration.add(seperation);
         this.acceleration.add(alignment);
         this.acceleration.add(cohesion);
+        this.acceleration.add(wind);
     }
 
     update(){
@@ -103,16 +105,16 @@ class Boid{
 
     show(){
         let angle = this.velocity.heading();
+        const size = 8;
         push();
         translate(this.position.x, this.position.y);
         rotate(angle);
-        strokeWeight(1);
-        stroke(255);
-        fill(200);
+        fill(0);
+        noStroke();
         beginShape();
-        vertex(5, 0);
-        bezierVertex(-2, -2, -3, -1, -3, 0);
-        bezierVertex(-3, 1, -2, 2, 5, 0);
+        vertex(size,0);
+        bezierVertex(-size * 0.5, -size * 0.3, -size, -size * 0.2, -size, 0);
+        bezierVertex(-size, size * 0.2, -size * 0.5, size * 0.3, size, 0);
         endShape(CLOSE);
         pop();
     }

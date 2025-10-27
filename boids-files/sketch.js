@@ -7,7 +7,7 @@ function setup(){
     container.addClass("boids-container");
     container.parent(document.querySelector(".wrapper"));
 
-    canvas = createCanvas(640,360);
+    canvas = createCanvas(windowWidth - 60, windowHeight - 200);
     canvas.parent(container);
 
     alignSlider = createSlider(0,5,1,0.1);
@@ -16,10 +16,13 @@ function setup(){
     resetButton = createButton("Reset Flock Behaviour");
     resetButton.mousePressed(resetFlockValues);
 
-    alignSlider.parent(container);
-    cohesionSlider.parent(container);
-    seperationSlider.parent(container);
-    resetButton.parent(container);
+    let controls = createDiv();
+    controls.addClass("controls");
+    controls.parent(document.querySelector(".wrapper"));
+    alignSlider.parent(controls);
+    cohesionSlider.parent(controls);
+    seperationSlider.parent(controls);
+    resetButton.parent(controls);
 
     for (let i = 0; i < 200; i++){
         flock.push(new Boid())
@@ -34,7 +37,14 @@ function resetFlockValues() {
 
 
 function draw(){
-    background(51);
+    noStroke();
+    for (let y = 0; y < height; y++) {
+        let r = map(y, 0, height, 120, 255);
+        let g = map(y, 0, height, 30, 120);
+        let b = map(y, 0, height, 80, 60);
+        fill(r, g, b);
+        rect(0, y, width, 1);
+    }
     for(let boid of flock){
         boid.flock(flock);
     }
@@ -45,3 +55,6 @@ function draw(){
     }
 }
 
+function windowResized() {
+    resizeCanvas(windowWidth - 60, windowHeight - 200);
+}
