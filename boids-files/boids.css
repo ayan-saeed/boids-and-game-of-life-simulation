@@ -17,3 +17,18 @@ html, body {
     height: 100%;
     overflow: hidden;
 }
+
+.wrapper {
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.boids-container {
+  margin-top: 10px;
+}
+
+canvas {
+  display: block;
+  position: relative !important;
+  border: 2px solid #444;
+}
