@@ -28,10 +28,8 @@ class Boid{
             this.position.y = height;
         }
     }
-    // Alignment — fly in the same direction as nearby boids
-    align(boids){
-        // Perception radius
-        let radius = 60;
+
+    calculateForce(boids, radius, callback) {
         // Calculated steering force
         let steering = createVector();
         // Number of nearby boids
@@ -39,11 +37,8 @@ class Boid{
         for(let other of boids){
             // Only check neighbors inside perception radius
             if(other != this && dist(this.position.x, this.position.y, other.position.x, other.position.y) < radius){
-                // Direction difference
-                let diff = p5.Vector.sub(this.position, other.position);
-                diff.div(dist(this.position.x, this.position.y, other.position.x, other.position.y));
                 // Add to steering direction
-                steering.add(diff);
+                steering.add(callback(other, dist(this.position.x, this.position.y, other.position.x, other.position.y)));
                 total++;
             }
         }
@@ -59,49 +54,27 @@ class Boid{
         }
         return steering;
     }
+
+    // Alignment — fly in the same direction as nearby boids
+    align(boids){
+        return this.calculateForce(boids, 60, (other) =>
+            // follow velocity direction
+            other.velocity.copy());
+    }
     // Separation — avoid crowding other boids
     seperation(boids){
-        // Shorter distance to avoid collisions
-        let radius = 30;
-        let steering = createVector();
-        let total = 0;
-        for(let other of boids){
-            if(other != this && dist(this.position.x, this.position.y, other.position.x, other.position.y) < radius){
-                // Move away from neighbors
-                steering.add(other.position);
-                total++;
-            }
-        }
-        if (total > 0){
-            steering.div(total);
-            steering.setMag(this.maxSpeed);
-            steering.sub(this.velocity);
-            steering.limit(this.maxForce);
-        }
-        return steering;
+        return this.calculateForce(boids, 30, (other, d) => {
+            let diff = p5.Vector.sub(this.position, other.position);
+            // stronger push when closer
+            diff.div(d * d);
+            return diff;
+        });
     }
     // Cohesion — move toward the average position of the flock
     cohesion(boids){
-        let radius = 100;
-        let steering = createVector();
-        let total = 0;
-        for(let other of boids){
-            if(other != this && dist(this.position.x, this.position.y, other.position.x, other.position.y) < radius){
-                // Sum neighbor positions
-                steering.add(other.position);
-                total++;
-            }
-        }
-        if (total > 0){
-            // Average neighbor position
-            steering.div(total);
-            // Head toward center
-            steering.sub(this.position);
-            steering.setMag(this.maxSpeed);
-            steering.sub(this.velocity);
-            steering.limit(this.maxForce);
-        }
-        return steering;
+        return this.calculateForce(boids, 100, (other) =>
+            // move to flock center
+            p5.Vector.sub(other.position, this.position));
     }
     // Combine forces from alignment, cohesion, and separation
     flock(boids){
