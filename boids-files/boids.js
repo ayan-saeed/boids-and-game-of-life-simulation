@@ -105,16 +105,16 @@ class Boid{
 
     show(){
         let angle = this.velocity.heading();
-        const size = 8;
         push();
         translate(this.position.x, this.position.y);
         rotate(angle);
         fill(0);
         noStroke();
+
         beginShape();
-        vertex(size,0);
-        bezierVertex(-size * 0.5, -size * 0.3, -size, -size * 0.2, -size, 0);
-        bezierVertex(-size, size * 0.2, -size * 0.5, size * 0.3, size, 0);
+        vertex(10, 0);
+        bezierVertex(-5, -4, -8, -2, -10, 0);
+        bezierVertex(-8, 2, -5, 4, 10, 0);
         endShape(CLOSE);
         pop();
     }
